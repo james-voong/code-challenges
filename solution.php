@@ -15,18 +15,22 @@ function solution (array $input) : int {
     $water = 0;
     $middle = 0;
     $skipped = NULL;
+    $key_left = NULL;
+    $key_right = NULL;
 
     // Traverse the input array.
-    foreach ($input as $height) {
+    foreach ($input as $key => $height) {
         // Height has not been set on the left, set it.
         if ($left === NULL) {
             $left = $height;
+            $key_left = $key;
             continue;
         }
 
         // Height has not been set on the right, set it.
         if ($right === NULL) {
             $right = $height;
+            $key_right = $key;
             continue;
         }
 
@@ -35,6 +39,7 @@ function solution (array $input) : int {
 
             $middle += $right;
             $right = $height;
+            $key_right = $key;
             $skipped++;
 
             continue;
@@ -42,6 +47,11 @@ function solution (array $input) : int {
             $middle += $height;
             $skipped++;
         }
+    }
+
+    // The two pillars are adjacent, so it's impossible to store any water between them.
+    if ($key_right - $key_left == 1) {
+        return 0;
     }
 
     $max_water_level = min($left, $right);

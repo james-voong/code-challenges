@@ -1,12 +1,13 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+require_once(dirname(__FILE__).'/../solution.php');
 
 final class TrappingRainwaterTest extends TestCase {
 
     public function testLeftHigher() : void {
         $input = [4, 0, 2];
-        assertEquals(
+        $this->assertEquals(
             solution($input),
             2
         );
@@ -14,7 +15,7 @@ final class TrappingRainwaterTest extends TestCase {
 
     public function testRightHigher() : void {
         $input = [3, 0, 4];
-        assertEquals(
+        $this->assertEquals(
             solution($input),
             3
         );
@@ -22,7 +23,7 @@ final class TrappingRainwaterTest extends TestCase {
 
     public function testLargeGap() : void {
         $input = [4, 0, 0, 4];
-        assertEquals(
+        $this->assertEquals(
             solution($input),
             8
         );
@@ -30,7 +31,7 @@ final class TrappingRainwaterTest extends TestCase {
 
     public function testNonZeroMid() : void {
         $input = [4, 2, 1, 4];
-        assertEquals(
+        $this->assertEquals(
             solution($input),
             5
         );

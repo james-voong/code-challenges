@@ -8,33 +8,40 @@ final class TrappingRainwaterTest extends TestCase {
     public function testLeftHigher() : void {
         $input = [4, 0, 2];
         $this->assertEquals(
-            solution($input),
-            2
+            2,
+            solution($input)
         );
     }
 
     public function testRightHigher() : void {
         $input = [3, 0, 4];
         $this->assertEquals(
-            solution($input),
-            3
+            3,
+            solution($input)
         );
     }
 
     public function testLargeGap() : void {
         $input = [4, 0, 0, 4];
         $this->assertEquals(
-            solution($input),
-            8
+            8,
+            solution($input)
         );
     }
 
     public function testNonZeroMid() : void {
         $input = [4, 2, 1, 4];
         $this->assertEquals(
-            solution($input),
-            5
+            5,
+            solution($input)
         );
     }
 
+    public function testNoTrappedWater() : void {
+        $input = [1, 2, 0, 0];
+        $this->assertEquals(
+            0,
+            solution($input)
+        );
+    }
 }

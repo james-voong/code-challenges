@@ -44,4 +44,14 @@ final class TrappingRainwaterTest extends TestCase {
             solution($input)
         );
     }
+
+    public function testMultipleBodiesOfWater() : void {
+        // This array contains 2 bodies of water:
+        // (3, 0, 3) and (4, 2 ,5)
+        $input = [3, 0, 3, 4, 2, 5];
+        $this->assertEquals(
+            5,
+            solution($input)
+        );
+    }
 }

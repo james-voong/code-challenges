@@ -54,4 +54,24 @@ final class TrappingRainwaterTest extends TestCase {
             solution($input)
         );
     }
+
+    public function testMoveLeftHeight() : void {
+        $input = [2, 5, 2, 6];
+        $this->assertEquals(
+            3,
+            solution($input)
+        );
+
+        $input = [0, 5, 2, 6];
+        $this->assertEquals(
+            3,
+            solution($input)
+        );
+
+        $input = [0, 2, 5, 2, 6];
+        $this->assertEquals(
+            3,
+            solution($input)
+        );
+    }
 }

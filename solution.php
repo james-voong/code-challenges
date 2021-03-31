@@ -21,7 +21,8 @@ function solution (array $input) : int {
     // Traverse the input array.
     foreach ($input as $key => $height) {
         // Height has not been set on the left, set it.
-        if ($left === NULL) {
+        // A height of <1 is not useful because it cannot trap any water.
+        if ($left === NULL || $left < 1) {
             $left = $height;
             $key_left = $key;
             continue;
@@ -31,7 +32,7 @@ function solution (array $input) : int {
         if ($right === NULL) {
             $right = $height;
             $key_right = $key;
-            continue;
+            // continue;
         }
 
         // The current height is higher than the right, so this is the new highest on the right hand side now.
@@ -42,10 +43,28 @@ function solution (array $input) : int {
             $key_right = $key;
             $skipped++;
 
+            // TODO maybe this is unneeded.
             continue;
         } else {
             $middle += $height;
             $skipped++;
+        }
+
+        // Maximum amount of water storage has been reached, calculate the water.
+        if ($right >= $left) {
+            // The two pillars are not adjacent, so calculate the water.
+            if ($key_right - $key_left != 1) {
+                $max_water_level = min($left, $right);
+                $water += $max_water_level * $skipped - $middle;
+            }
+
+            // This body of water has been calculated, reset all the variables.
+            $left = $right;
+            $right = NULL;
+            $middle = 0;
+            $skipped = NULL;
+            $key_left = NULL;
+            $key_right = NULL;
         }
     }
 
@@ -55,7 +74,7 @@ function solution (array $input) : int {
     }
 
     $max_water_level = min($left, $right);
-    $water = $max_water_level * $skipped - $middle;
+    $water += $max_water_level * $skipped - $middle;
 
     return $water;
 }
